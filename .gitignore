@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Fabric/Loom
+run/
+remappedSrc/
+.architectury-transformer/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local agent state
+.claude/settings.local.json

@@ -1,0 +1,22 @@
+name: agents-hygiene
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  mirror-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: .claude/ and .agents/ mirrors must be identical
+        run: |
+          for dir in skills agents; do
+            if [ -d ".claude/$dir" ]; then
+              diff -r ".claude/$dir" ".agents/$dir" || {
+                echo "::error::.claude/$dir and .agents/$dir differ — run scripts/sync-skills.sh and commit."
+                exit 1
+              }
+            fi
+          done
